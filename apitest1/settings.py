@@ -28,7 +28,7 @@ DEBUG = True
 #DEBUG = False
 
 # HEROKU
-ALLOWED_HOSTS = ['pvemusic.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['canolasoft.pythonanywhere.com', 'pvemusic.herokuapp.com', '127.0.0.1', 'localhost']
 #ALLOWED_HOSTS = []
 
 
