@@ -37,7 +37,7 @@ class Redsocial(models.Model):
 	id_rs = models.BigAutoField(primary_key=True)
 	id_a = models.ForeignKey(Artista, on_delete=models.SET_NULL, null=True)
 	nombre_rs = models.CharField(max_length=30)
-	imagen_rs = models.CharField(max_length=150, null=True)
+	imagen_rs = models.ImageField(null=True, blank=True)
 	url_rs = models.CharField(max_length=150, null=True)
 	def __str__(self):
 		return self.nombre_rs
