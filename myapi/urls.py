@@ -22,9 +22,6 @@ from myapi import views
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-	############# index
-	path('index/', views.index, name='index'),
-	path('', views.index),
 
 	############# serializers
 	# consulta 0: dame los Datos de la app
@@ -44,5 +41,13 @@ urlpatterns = [
 
 	# consulta 5: dame los datos de una cancion (id)
 	path('qry5/', CancionSerializer.as_view(), name='qry5'),
+
+
+	############# Landing
+	# Home index (lista de artistas)
+	path('', index, name=''),
+
+	# Artista perfil (datos del artista y lista de videos)
+	path('artista', artista, name='artista'),
 ]
 

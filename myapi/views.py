@@ -14,12 +14,6 @@ class DatappViewSet(viewsets.ModelViewSet):
 		kap = self.request.GET.get('kap')
 		return Datapp.objects.filter(keyapp = kap)
 
-# index de prueba (muestra todos los artistas)
-def index(request):
-	artistas = Artista.objects.all().order_by('nombre_a')
-	context = {'artistas':artistas}
-	return render(request, "landing/index.html", context)
-
 # Consulta 1: dame todos los Artistas
 class ArtistasViewSet(viewsets.ModelViewSet):
 	#queryset = Artista.objects.all().order_by('nombre_a')
@@ -82,3 +76,26 @@ class CancionSerializer(ListCreateAPIView):
 			id_c = self.request.GET.get('id')
 			cancion = Cancion.objects.filter(id_c = id_c)
 			return cancion
+
+############ LANDING
+def index(request):
+# Home index (lista de artistas)
+	artistas = Artista.objects.all().order_by('?')
+	#videos = Video.objects.all()
+	context = {
+		'artistas':artistas,
+        #'videos':videos,
+        }
+	return render(request, "landing/index.html", context)
+
+# Artista perfil (datos del artista y lista de videos)
+def artista(request):
+	id_a = request.GET.get('id')
+	artista = Artista.objects.filter(id_a = id_a).first
+	#logger.error("artista: "+str(artista))
+	canciones = Cancion.objects.filter(id_a = id_a)
+	context = {
+		'artista':artista,
+        'canciones':canciones,
+        }
+	return render(request, "landing/artista.html", context)

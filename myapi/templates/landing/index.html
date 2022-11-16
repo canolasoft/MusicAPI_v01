@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+	<title>MusicAPP - Home</title>
+{% endblock title %}
 {% block content %}
 	<div class="row">
-		{% for artista in artistas %}
-		<div class="col-lg-4">
-			<img class="thumbnail" src="static{{artista.imageURL}}">
-			<div class="box-element product">
-				<h6><strong>{{artista.nombre_a}}</strong></h6>
-				<hr>
-
-				<button data-product="{{artista.id_a}}" data-action="#" class="btn btn-outline-secondary #-btn update-cart">Abrir</button>
-				
-				<!--
-				<a class="btn btn-outline-success" href="#">View</a>
-				-->
-				<h4 style="display: inline-block; float: right"><strong>${{artista.descripcion_a}}</strong></h4>
-				<h3 style="display: inline-block; float: right"><strong>${{artista.id_tag}}</strong></h4>
-
-			</div>
+		<h1>VIDEOAPP</h1>
+		<div class="artista">
+			{% if artistas|length < 1  %}
+				<h2>No hay artistas</h2>
+			{% else %}
+				<h2>Artistas</h2>
+				{% for artista in artistas %}
+				<div class="col-lg-4">
+					<img class="thumbnail" src="static{{artista.imageURL}}">
+					<div class="box-element product">
+						<h3><strong>{{artista.nombre_a}}</strong></h3>
+						<a href="{% url 'artista' %}?id={{artista.id_a}}" class="btn btn-outline-secondary artistimg">Abrir</a>
+						<!--a class="btn btn-outline-success" href="#">View</a>
+						<br>
+						<h4 style="display: inline-block; float: right"><strong>${{artista.descripcion_a}}</strong></h4>
+						<br>
+						<h3 style="display: inline-block; float: right"><strong>${{artista.id_tag}}</strong></h4-->
+					</div>
+				</div>
+				{% endfor %}
+			{% endif %}
 		</div>
-		{% endfor %}
 	</div>
 
 {% endblock content %}

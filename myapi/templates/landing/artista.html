@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Music - Artista</title>
+{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 margin">
+    <a class="btn btn-outline-dark" href="{% url '' %}">&#x2190; Volver</a>
+    </div>
+    <br><br>
+    <div class="max800 margin">
+    <h1>{{artista.nombre_a}}</h1>
+    <br>
+    <img id="musicoImage" class="artistimg" src="../static/images/{{artista.imagen_a}}">
+        <table class="col-lg-12 col-md-8 col-sm-4">
+            <tr>
+                <td>
+                    <a id="linkGen0" href=""><img class="genicon" id="musicoGenero0"></a>
+                    <a id="linkGen1" href=""><img class="genicon" id="musicoGenero1"></a>
+                    <a id="linkGen2" href=""><img class="genicon" id="musicoGenero2"></a>
+                </td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+                <td>Tags:&nbsp;</td>
+                <td id="musicoFcreacion">{{artista.id_tag}}</td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+                <td>Cantidad de músicos:&nbsp;</td>
+                <td id="musicoCantidad">{{artista.descripcion_a}}</td>
+            </tr>
+            <tr>
+                <td>Redes Sociales:</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" id="linkRed0"><img class="redicon" id="imagenRed0"></a>
+                    <a target="_blank" id="linkRed1"><img class="redicon" id="imagenRed1"></a>
+                    <a target="_blank" id="linkRed2"><img class="redicon" id="imagenRed2"></a>
+                </td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+                <tr id="videos" class="videosdiv"><td>Canciones:
+                <br><br>
+                </td></tr>
+                <tr><td colspan="2">
+                    {% for cancion in canciones %}
+                    <h4>{{cancion.nombre_c}}</h4>
+                    <img src="static/images/{{cancion.imagen_c}}" alt="">
+                    <audio controls>
+                        <source src="{{cancion.url_c}}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <br>
+                    {% endfor %}
+                </td></tr>
+        </table>
+    </div>
+</div>
+<!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+        console.log("artista: {{artista.nombre_a}}")
+    var m
+    var musicoGeneros = '{{datosmusico.genero}}'.split(",");
+    var musicoRedes = '{{datosmusico.redes}}'.split(";");
+    var musicoVideos = '{{datosmusico.videos}}'.split(",");
+    for (var i=0; i < musicoRedes.length; i++){
+			musicoRed = musicoRedes[i].split(",");
+            imagenred = musicoRed[0];
+			linkred = musicoRed[1];
+			$("#imagenRed"+i).attr("src", "../static/images/store/icons/"+imagenred+'.png');
+			$("#linkRed"+i).attr("href", linkred);
+		}
+    for (var i=0; i < musicoGeneros.length; i++) {
+        console.log("musicoGeneros: "+musicoGeneros[i]);
+        $("#musicoGenero"+i).attr("src", "../static/images/store/icons/"+musicoGeneros[i]+'.png');
+        $("#linkGen"+i).attr("href", "{% url '' %}?search2=&dropdown="+musicoGeneros[i]);
+    }
+    for (var i=0; i < 3; i++) {
+        console.log()
+        if(musicoVideos[i] != "0" && musicoVideos[i] != null){
+            var x = document.getElementById("videos");
+            x.style.display = "block";
+            m = musicoVideos[i].replace("watch?v=", "embed/")
+            console.log("musicoVideos: "+m);
+            var x = document.getElementById("video"+i);
+            x.style.display = "block";
+            $("#video"+i).attr("src", m);
+        }
+    }
+</script-->
+{% endblock content %}
+
+
+
